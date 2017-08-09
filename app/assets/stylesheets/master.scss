@@ -1,0 +1,60 @@
+@import "bootstrap";
+@import "font-awesome";
+
+.apple_pagination {
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  padding-bottom: 3em;
+  cursor: default;
+  clear: both;
+  position: relative;
+  z-index: 10;
+  height: 3em;
+  margin-top: 0em;
+  bottom: 0px;
+  width: 100%; }
+
+.apple_pagination a, .apple_pagination span {
+  padding: 0.2em 0.3em; }
+
+.apple_pagination .disabled {
+  color: #aaaaaa; }
+
+.apple_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background-color: #bebebe;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.5;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+
+.apple_pagination a {
+  text-decoration: none;
+  color: black; }
+  .apple_pagination a:hover, .apple_pagination a:focus {
+    text-decoration: underline; }
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.booyah-box {
+  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  box-shadow: 1px 1px 2px 0 #d0d0d0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+}
