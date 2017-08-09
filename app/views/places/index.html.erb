@@ -4,7 +4,7 @@
   <div class = "card card-1">
     <img class = "card-img-top" src = "http://via.placeholder.com/220x150" alt = "...">
     <div class = "card-block">
-    <h4 class = "card-title"><%= place.name %></h4>
+    <h4 class = "card-title"><%= link_to place.name, place_path(place) %></h4>
     <h6 class = "card-subtitle text-muted"><%= place.address %></h6>
     <br />
     <p class = "card-text"><%= place.description %></p>

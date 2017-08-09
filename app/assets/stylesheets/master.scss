@@ -1,6 +1,13 @@
 @import "bootstrap";
 @import "font-awesome";
 
+.h1-inline {
+  display: inline-block;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
 .apple_pagination {
   background: #f1f1f1;
   border: 1px solid #e5e5e5;
@@ -57,4 +64,8 @@
   background: #fff;
   border: 1px solid #ccc;
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+}
+
+.white-text {
+  font-color: white;
 }

@@ -1,0 +1,17 @@
+<div class = "booyah-box col-10 offset-1">
+
+  <h1 class = "h1-inline"><%= @place.name %></h1>
+  <div class = "pull-right margin-top-10">
+    <%= link_to edit_place_path, class: 'btn btn-secondary' do %>
+      <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+    <% end %>
+    <%= link_to place_path(@place), class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} do %>
+      <i class="fa fa-trash" aria-hidden="true"></i> Delete
+    <% end %>
+  </div>
+
+<br class = "clear">
+  <i><%= @place.address %></i>
+  <br/><br/>
+  <p><%= @place.description %></p>
+</div>
