@@ -10,7 +10,14 @@
     <p class = "card-text"><%= place.description %></p>
     </div>
     <div class = "card-footer">
-      <small class = "text-muted">Last comment</small>
+      <small class = "text-muted">    
+        <% if place.user.present? %>
+          Submitted by: <%= place.user.email %>
+        <% else %>
+          Unknown user
+        <% end %>
+      </small>
+
     </div>
   </div>
   <br />
