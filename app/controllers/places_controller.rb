@@ -21,6 +21,7 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find_by_id(params[:id])
+    @comment = Comment.new
   end
 
   def edit
