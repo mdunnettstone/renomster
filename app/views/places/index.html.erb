@@ -11,13 +11,20 @@
     </div>
     <div class = "card-footer">
       <small class = "text-muted">    
-        <% if place.user.present? %>
+        <% if place.comments.present? %>
+          <div class="col-12">
+              <% if place.comments.last.rating.present? %>
+                <b><%= place.comments.last.rating %> stars</b> -
+              <% end %>
+              <%= place.comments.last.message %>
+              <small><%= place.comments.last.user.email.chomp %></small>
+          </div>
+        <% elsif place.user.present? %>
           Submitted by: <%= place.user.email %>
         <% else %>
           Unknown user
         <% end %>
       </small>
-
     </div>
   </div>
   <br />

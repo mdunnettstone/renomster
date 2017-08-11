@@ -24,8 +24,9 @@
           <%= link_to place_path(@place), class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} do %>
             <i class="fa fa-trash" aria-hidden="true"></i> Delete
           <% end %>
+      </div>
   </div>
-    </div>
+  <div class = "clear"></div>
     <% end %>
 
       <br class = "clear"/>
@@ -61,18 +62,20 @@
 
     <!-- Address and description -->
 
-    <br class = "clear"/>
+    <div class = "clear"/></div>
     <p><%= @place.description %></p>
 </div>
 
 <br />
 
+<!-- Comment box -->
 <div class = "booyah-box col-10 offset-1">
-  <h3 class = "margin-top-10 h1-inline">Comments</h3>
+  <h3 class = "margin-top-10 float-left">Comments</h3>
   <button type="button" class="btn btn-primary float-right margin-top-10" data-toggle="modal" data-target="#myModal">+ Add a comment
   </button>
   <div class = "clear"></div>
-  <br />
+
+<!-- Comment cards -->
   <br />
   <div class = "row">
   <% @place.comments.each do |comment| %>
@@ -93,11 +96,15 @@
   </div>
   <% end %>
   </div>  
+  <br />
   </div>
+  <br />
   <br />
 </div>
 <br />
-<!-- Modal -->
+
+
+<!-- Comments Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -122,3 +129,18 @@
 </div>
 </div>
 <br />
+
+<div class = "booyah-box col-10 offset-1">
+  <h3>Photos</h3>
+  <br />
+
+
+
+
+  <h4>Add a photo</h4>
+  <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+    <%= f.input :caption %>
+    <%= f.submit "Submit photo", class: 'btn btn-primary' %>
+  <% end %>
+  <br />
+</div>
