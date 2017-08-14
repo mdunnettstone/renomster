@@ -1,6 +1,6 @@
 <div class = "booyah-box col-10 offset-1">
   <div class = "row">
-    <h1 class = "h1-inline col-12 col-lg-6"><%= @place.name %></h1>
+    <h1 class = "h1-inline col-12 col-lg-6 float-left"><%= @place.name %></h1>
 
     <!-- This is something that needs moving to the model, but don't know how to do that yet -->
 
@@ -9,15 +9,15 @@
     <% rating_integers << c.rating.to_i %>
     <% end %>
     <% if @place.comments.present? %>
-    <div class = "h1-inline gold-text col-6 col-lg-3 margin-top-10">
+    <div class = "float-right gold-text col-6 col-lg-3 margin-top-10">
     <h3><b><%= (rating_integers.sum.to_f / rating_integers.length).round(2) %></b> stars <small>(<%= rating_integers.length %>)</small></h3></div>
     <% end %>
 
 
       
       <!-- Buttons for edit and delete visible only to user who created them -->
-      <div class = "pull-right margin-top-10 col-12 col-lg-3 text-align-right">
-      <% if current_user == @place.user %>
+    <% if current_user == @place.user %>
+      <div class = "float-right margin-top-10 col-12 col-lg-3 text-align-right">
           <%= link_to edit_place_path, class: 'btn btn-secondary' do %>
             <i class="fa fa-pencil" aria-hidden="true"></i> Edit
           <% end %>
@@ -25,11 +25,14 @@
             <i class="fa fa-trash" aria-hidden="true"></i> Delete
           <% end %>
       </div>
-  </div>
-  <div class = "clear"></div>
     <% end %>
+      <div class = "clear"></div>
+  </div>
 
-      <br class = "clear"/>
+
+
+    <br />
+    <div class = "clear"></div>
       <i><%= @place.address %></i>
       <br/>
     <!-- Google maps -->
@@ -71,7 +74,7 @@
 <!-- Comment box -->
 <div class = "booyah-box col-10 offset-1">
   <h3 class = "margin-top-10 float-left">Comments</h3>
-  <button type="button" class="btn btn-primary float-right margin-top-10" data-toggle="modal" data-target="#myModal">+ Add a comment
+  <button type="button" class="btn btn-primary float-right margin-top-10 col-12 col-sm-6 col-lg-3" data-toggle="modal" data-target="#CommentModal">+ Add a comment
   </button>
   <div class = "clear"></div>
 
@@ -99,20 +102,19 @@
   <br />
   </div>
   <br />
-  <br />
 </div>
-<br />
+
 
 
 <!-- Comments Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="CommentModal" tabindex="-1" role="dialog" aria-labelledby="CommentModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Add a comment</h4>
+        <h4 class="modal-title" id="CommentModalLabel">Add a comment</h4>
       </div>
       <%= simple_form_for @comment, url: place_comments_path(@place) do |f| %>
         <div class="modal-body">
@@ -128,19 +130,60 @@
   </div>
 </div>
 </div>
+
+
+<!-- Photos box -->
+<div class = "booyah-box col-10 offset-1">
+  <h3 class = "margin-top-10 float-left">Photos</h3>
+<button type="button" class="btn btn-primary margin-top-10 float-right col-12 col-sm-6 col-lg-3" data-toggle="modal" data-target="#exampleModal">
+  + Add Photo
+</button>
+
+  <div class = "clear"></div>
+  <br />
+  <div class = "row">
+  <% @place.photos.each do |photo| %>
+  <div class = "col-12 col-sm-6">
+    <div class="card text-center">
+    <% if photo.picture.present? %>
+    <%= image_tag photo.picture, height: "260", class: "card-img-top" %>
+    <% else %>
+    <img class = "card-img-top" src = "http://via.placeholder.com/300x260" alt = "..." height = "260">
+    <% end %>
+      <div class = "card-block">
+        <div class = "card-footer">
+          <%= photo.caption %>
+        </div>
+      </div>
+    </div>
+    <br />
+  </div>
+  <% end %>
+  </div>
+</div>
 <br />
 
-<div class = "booyah-box col-10 offset-1">
-  <h3>Photos</h3>
-  <br />
 
-
-
-
-  <h4>Add a photo</h4>
-  <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
-    <%= f.input :caption %>
-    <%= f.submit "Submit photo", class: 'btn btn-primary' %>
-  <% end %>
-  <br />
+<!-- Photo upload modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+      <div class="modal-body">
+        <%= f.input :caption %>
+        <%= f.input :picture %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary col-2" data-dismiss="modal">x</button>
+        <%= f.submit "Add photo", class: 'btn btn-primary col-10' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -1,8 +1,51 @@
 <div class = "row col-10 offset-1">
+
+<!-- Carousel slider -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <%= image_tag 'slider-1.jpg', class: "img-fluid" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Find music practice rooms</h3>
+        </div>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'slider-2.jpg', class: "img-fluid" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Caption 2</h3>
+        </div>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'slider-3.jpg', class: "img-fluid" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Caption 3</h3>
+        </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!-- Places cards -->
   <% @places.each do |place| %>
   <div class = "col-md-6">
   <div class = "card card-1">
-    <img class = "card-img-top" src = "http://via.placeholder.com/220x150" alt = "...">
+    <% if place.photos.present? %>
+      <%= image_tag place.photos.last.picture, height: "260", class: "card-img-top" %>
+    <% else %>
+      <img class = "card-img-top" src = "https://dummyimage.com/300x260/edfbfc/5b6063&text=Please+add+a+photo" alt = "..." height: "260">
+    <% end %>
     <div class = "card-block">
     <h4 class = "card-title"><%= link_to place.name, place_path(place) %></h4>
     <h6 class = "card-subtitle text-muted"><%= place.address %></h6>
@@ -33,4 +76,5 @@
   <% end %>
 </div>
 
+<!-- pagination -->
 <%= will_paginate @places, class: 'apple_pagination' %>
