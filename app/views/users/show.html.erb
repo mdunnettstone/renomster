@@ -25,12 +25,40 @@
         <div class="card-header">
           <!-- This is where comment.place.name should be, but doesn't currently work -->
           <b>Place name</b>
+          <%= comment.place.name %>
         </div>
         <div class="card-block">
           <p class="card-text text-muted">"<%= comment.message %>"</p>
         </div>
         <div class="card-footer gold-text">
           <b><%= comment.rating %></b> stars
+        </div>
+      </div>
+      <br />
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<br />
+
+<div class = "booyah-box col-10 offset-1">
+  <h1 class = "text-center">My places</h1>
+  <div class = "row">
+    <% @user.places.each do |place| %>
+    <div class = "col-12 col-sm-6">
+      <div class = "card text-center">
+        <div class = "card-header">
+          <b><%= link_to place.name, place_path(place) %></b>
+        </div>
+        <div class = "card-block">
+          <p class = "card-text text-muted">
+          <% if place.comments.count == 1 %>
+          <%= place.comments.count %> comment
+          <% else %>
+          <%= place.comments.count %> comments
+          <% end %>
+          </p>
         </div>
       </div>
       <br />
