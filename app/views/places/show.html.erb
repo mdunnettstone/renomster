@@ -4,14 +4,8 @@
 
     <!-- This is something that needs moving to the model, but don't know how to do that yet -->
 
-    <% rating_integers = [] %>
-    <% @place.comments.each do |c| %>
-    <% rating_integers << c.rating.to_i %>
-    <% end %>
-    <% if @place.comments.present? %>
     <div class = "float-right gold-text col-6 col-lg-3 margin-top-10">
-    <h3><b><%= (rating_integers.sum.to_f / rating_integers.length).round(2) %></b> stars <small>(<%= rating_integers.length %>)</small></h3></div>
-    <% end %>
+    <h3><b><%= @place.average_rating %></b> stars <small>(<%= @place.comments.count %>)</small></h3></div>
 
 
       
@@ -35,6 +29,7 @@
     <div class = "clear"></div>
       <i><%= @place.address %></i>
       <br/>
+
     <!-- Google maps -->
     <% if @place.latitude.present? && @place.longitude.present? %>
 

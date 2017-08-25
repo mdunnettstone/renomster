@@ -17,15 +17,15 @@
 <br />
 
 <div class = "booyah-box col-10 offset-1">
-  <h1 class = "text-center">My comments</h1>
+  <h1 class = "text-center margin-top-10">My comments</h1>
+  <br />
   <div class = "row">
     <% @user.comments.each do |comment| %>
     <div class = "col-12 col-sm-6">
       <div class="card text-center">
         <div class="card-header">
           <!-- This is where comment.place.name should be, but doesn't currently work -->
-          <b>Place name</b>
-          <%= comment.place.name %>
+          <b><%= link_to comment.place.name, place_path(comment.place) %></b>
         </div>
         <div class="card-block">
           <p class="card-text text-muted">"<%= comment.message %>"</p>
@@ -43,7 +43,8 @@
 <br />
 
 <div class = "booyah-box col-10 offset-1">
-  <h1 class = "text-center">My places</h1>
+  <h1 class = "text-center margin-top-10">My places</h1>
+  <br />
   <div class = "row">
     <% @user.places.each do |place| %>
     <div class = "col-12 col-sm-6">
